@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Check Payment";
+}
+
+@ViewBag.ThongBao
+@using (Html.BeginForm("checkpayment", "payment"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <p>Info Ticket</p>
+    <input class="form-control" type="text" name="transId" id="transId" value="@ViewBag.transId" readonly>
+    <input class="form-control" type="text" name="amount" id="amount" value="@ViewBag.amount" readonly>
+    <input class="form-control" type="text" name="shopId" id="shopId" value="@ViewBag.shopId" readonly>
+    <input class="form-control" type="text" name="orderInfo" id="orderInfo" value="@ViewBag.oderInfo" readonly>
+    <input class="form-control" type="text" name="orderInfo" id="orderInfo" value="@ViewBag.responseTime" readonly>
+    <p>Info Payment</p>
+    <input class="form-control" type="text" name="UserName" id="UserName" value="" placeholder="Enter your user name">
+    <input class="form-control" type="password" name="password" id="password" value="" placeholder="Enter your password">
+
+    <button style="background-color: #FF7300; width: 326px; height: 39px; border-radius: 5px; border: none; margin-top: 70px; color:#FFF;" type="submit">Login</button>
+}

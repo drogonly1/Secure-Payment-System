@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Merchant" Class="Merchant_DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-KAETF7H\SQLEXPRESS;Initial Catalog=Merchant;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="MerchantConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.GetUrlPayment" Member="GetUrlPayments">
+    <Type Name="GetUrlPayment">
+      <Column Name="urlId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="transId" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="payUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="OderRequest_GetUrlPayment" Member="OderRequest" ThisKey="transId" OtherKey="transId" Type="OderRequest" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="productId" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="Count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Product_OderRequest" Member="OderRequests" ThisKey="productId" OtherKey="productId" Type="OderRequest" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OderRequest" Member="OderRequests">
+    <Type Name="OderRequest">
+      <Column Name="transId" Type="System.String" DbType="NChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="amount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="shopId" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="oderInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="responseTime" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="signature" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="productId" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="OderRequest_GetUrlPayment" Member="GetUrlPayments" ThisKey="transId" OtherKey="transId" Type="GetUrlPayment" />
+      <Association Name="OderRequest_Payment" Member="Payments" ThisKey="transId" OtherKey="transId" Type="Payment" />
+      <Association Name="Product_OderRequest" Member="Product" ThisKey="productId" OtherKey="productId" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Payment" Member="Payments">
+    <Type Name="Payment">
+      <Column Name="paymentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="transId" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="statusCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="responseTime" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="signature" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="OderRequest_Payment" Member="OderRequest" ThisKey="transId" OtherKey="transId" Type="OderRequest" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

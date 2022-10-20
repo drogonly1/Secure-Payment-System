@@ -1,0 +1,125 @@
+﻿@model IEnumerable<WEB_SERVER.Models.Transaction>
+@using WEB_SERVER.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    CryptoService crypto = new CryptoService();
+}
+
+
+<div class="row">
+    <div class="col-10"><h1 class="h3 mb-2 text-gray-800">Transactions History</h1></div>
+</div>
+<br />
+<!-- DataTales Example -->
+<button id="action" hidden>Hide List</button><button class="bg-primary" id="action1" class="bg-info" style="font-size: 15px; color:#FFF; padding: 10px; border-radius: 5px;">Hide Oder Request</button>
+<div class="card shadow mb-4 PAYMENT" id="PAYMENT">
+    <div class="card-header py-3">
+        <h2 class="m-0 font-weight-bold text-primary">Payments</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead class="bg-primary">
+                    <tr>
+                        <th>TransId</th>
+                        <th>Status</th>
+                        <th>Response Time</th>
+                        <th>Rap phim</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        string time = crypto.TimestampToDatetime(i.Payment.responseTime);
+                        string a = "";
+                        if (i.Payment.statusCode.Trim() == "0") { a = "Sucsses"; } else { a = "Failed"; }
+
+                        <tr>
+                            <td>@i.Payment.transId</td>
+                            <td>@a</td>
+                            <td>@i.Payment.responseTime</td>
+                            <td>@time</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="card shadow mb-4 ODER" id="ODER">
+    <div class="card-header py-3">
+        <h2 class="m-0 font-weight-bold text-primary">Oder Requests</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead class="bg-primary">
+                    <tr>
+                        <th>TransId</th>
+                        <th>Product Name</th>
+                        <th>Amount</th>
+                        <th>Shop</th>
+                        <th>Oder Info</th>
+                        <th>Response Time</th>
+                        <th>Sigature</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        string timersp = crypto.TimestampToDatetime(i.Payment.responseTime);
+                        <tr>
+                            <td>@i.OfferRequest.transId</td>
+                            <td>@i.OfferRequest.Product.Name</td>
+                            <td>@i.OfferRequest.amount</td>
+                            <td>@i.OfferRequest.shopId</td>
+                            <td>@i.OfferRequest.oderInfo</td>
+                            <td>@timersp</td>
+                            <td>@i.OfferRequest.signature</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    const actionButton = document.getElementById("action");
+    const itemList = document.querySelector(".PAYMENT");
+
+    const toggleShowList = () => {
+        const isHidden = itemList.style.display === "none";
+        if (isHidden) {
+            // Display hidden element
+            itemList.style.display = "block";
+            actionButton.innerHTML = "Hide List";
+        } else {
+            // Hide element
+            itemList.style.display = "none";
+            actionButton.innerHTML = "Show List";
+        }
+    };
+    actionButton.addEventListener("click", toggleShowList);
+
+    const actionButton1 = document.getElementById("action1");
+    const itemList1 = document.querySelector(".ODER");
+
+    const toggleShowList1 = () => {
+        const isHidden1 = itemList1.style.display === "none";
+        if (isHidden1) {
+            // Display hidden element
+            itemList1.style.display = "block";
+            itemList.style.display = "none";
+            actionButton1.innerHTML = "Show Payments";
+        } else {
+            // Hide element
+            itemList1.style.display = "none";
+            itemList.style.display = "block";
+            actionButton1.innerHTML = "Show Oder Requests";
+        }
+    };
+    actionButton1.addEventListener("click", toggleShowList1);
+</script>

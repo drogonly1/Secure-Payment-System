@@ -1,0 +1,56 @@
+﻿@model IEnumerable<SPP_APISERVER.Models.OrderPaymentReceipt>
+@{
+    ViewBag.Title = "Oder Payment Receipts";
+    Layout = "~/Views/Shared/Transaction.cshtml";
+}
+<div class="row">
+    <div class="col-10"><h1 class="h3 mb-2 text-gray-800">Oder Payment Receipts</h1></div>
+</div>
+<br />
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Response Time</th>
+                        <th>Sigature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.transId</td>
+                            <td>@i.amount</td>
+                            <td>@i.statusCode</td>
+                            <td>@i.responseTime</td>
+                            <td>@i.signature</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ConfirmXoa() {
+        if (confirm("Bạn có chắc muốn xóa tài khoản này không ?"))
+            return true;
+        else
+            return false;
+    }
+    FocusEvent = false;
+    checked = false;
+</script>
+
+
+

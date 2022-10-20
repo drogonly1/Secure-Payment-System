@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 10.75" name="TTPDatabase">
+  <DataContextMoniker Name="/TTPDatabaseDataContext" />
+  <nestedChildShapes>
+    <classShape Id="b3fbdd45-dfc9-41c9-81b4-dab2e67fb000" absoluteBounds="6.5, 0.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/TTPDatabaseDataContext/Buyer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="78660708-9b83-42f3-9ec3-d39c3502fe8a" absoluteBounds="6.515, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f93b45a3-1edf-4c13-9794-0949348099e5" absoluteBounds="9.25, 4.5, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/TTPDatabaseDataContext/PaymentRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="effaaf2a-2887-4b2e-b32c-9604915b60a8" absoluteBounds="9.265, 4.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7a2998a8-863c-47a0-999f-de2d37145f3b" absoluteBounds="6.25, 3.25, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/TTPDatabaseDataContext/ConfirmOderRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="31d1b08b-3ad5-47d5-93a0-9d901e8a515d" absoluteBounds="6.265, 3.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3d527486-8468-405f-902a-9f69904a1682" absoluteBounds="0.75, 4.375, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/TTPDatabaseDataContext/Merchant" />
+      <nestedChildShapes>
+        <elementListCompartment Id="360a8c85-2dea-4c4e-8787-f0ef67a63af9" absoluteBounds="0.765, 4.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="84709cff-ff86-4b35-b6a4-ae8500d8edf2" absoluteBounds="3.5, 4.5, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/TTPDatabaseDataContext/OderRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="346a6808-28b5-4053-87b6-7a333d2adb65" absoluteBounds="3.515, 4.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fe09cf57-33b6-4ab2-9c70-455cbaebea89" absoluteBounds="6.25, 8.5, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/TTPDatabaseDataContext/OrderPaymentReceipt" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0accf8b3-55b2-48cd-a723-ff03c1d28116" absoluteBounds="6.265, 8.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.40625 : 2.32859537760417); (8.40625 : 5.77329752604167); (9.25 : 5.77329752604167)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TTPDatabaseDataContext/Buyer/Buyer_PaymentRequest" />
+      <nodes>
+        <classShapeMoniker Id="b3fbdd45-dfc9-41c9-81b4-dab2e67fb000" />
+        <classShapeMoniker Id="f93b45a3-1edf-4c13-9794-0949348099e5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5.36584716796875); (8.32291666666667 : 5.36584716796875 : JumpStart); (8.48958333333333 : 5.36584716796875 : JumpEnd); (9.25 : 5.36584716796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TTPDatabaseDataContext/OderRequest/OderRequest_PaymentRequest" />
+      <nodes>
+        <classShapeMoniker Id="84709cff-ff86-4b35-b6a4-ae8500d8edf2" />
+        <classShapeMoniker Id="f93b45a3-1edf-4c13-9794-0949348099e5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.76044840494792); (6.25 : 4.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TTPDatabaseDataContext/OderRequest/OderRequest_ConfirmOderRequest" />
+      <nodes>
+        <classShapeMoniker Id="84709cff-ff86-4b35-b6a4-ae8500d8edf2" />
+        <classShapeMoniker Id="7a2998a8-863c-47a0-999f-de2d37145f3b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 5.48159912109375); (3.5 : 5.48159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TTPDatabaseDataContext/Merchant/Merchant_OderRequest" />
+      <nodes>
+        <classShapeMoniker Id="3d527486-8468-405f-902a-9f69904a1682" />
+        <classShapeMoniker Id="84709cff-ff86-4b35-b6a4-ae8500d8edf2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 6.4631982421875); (4.5 : 9.48159912109375); (6.25 : 9.48159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TTPDatabaseDataContext/OderRequest/OderRequest_OrderPaymentReceipt" />
+      <nodes>
+        <classShapeMoniker Id="84709cff-ff86-4b35-b6a4-ae8500d8edf2" />
+        <classShapeMoniker Id="fe09cf57-33b6-4ab2-9c70-455cbaebea89" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

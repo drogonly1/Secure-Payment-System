@@ -1,0 +1,21 @@
+﻿@using WEB_SERVER.Models;
+@{
+    ViewBag.Title = "payment";
+    Product product = Model;
+}
+
+<h2>payment</h2>
+
+<div class="jumbotron">
+    <form action="~/Product/paymentInfo" method="post">
+        <input class="form-control" type="hidden" name="productId" value="@product.productId">
+        <p>TransId:</p>
+        <input class="form-control" type="text" name="transId" value="">
+        <p>Name:</p>
+        <input class="form-control" type="text" readonly value="@product.Name.Trim()">
+        <p style=" margin-top: 10px;">Price:</p>
+        <input class="form-control" type="text" readonly value="@product.Amount.Trim()" style="margin-bottom: 30px;">
+        <button style="border: solid;" class="btn" type="submit">Payment</button>
+    </form>
+</div>
+

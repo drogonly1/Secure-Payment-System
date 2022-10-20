@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TTP_SSP" Class="TTPDatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-KAETF7H\SQLEXPRESS;Initial Catalog=TTP_SSP;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TTP_SSPConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Buyer" Member="Buyers">
+    <Type Name="Buyer">
+      <Column Name="buyerId" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NChar(32)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NChar(32)" CanBeNull="true" />
+      <Column Name="amount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Association Name="Buyer_PaymentRequest" Member="PaymentRequests" ThisKey="buyerId" OtherKey="buyerId" Type="PaymentRequest" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PaymentRequest" Member="PaymentRequests">
+    <Type Name="PaymentRequest">
+      <Column Name="paymentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="transId" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="amount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="buyerId" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="responseTime" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="signature" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Buyer_PaymentRequest" Member="Buyer" ThisKey="buyerId" OtherKey="buyerId" Type="Buyer" IsForeignKey="true" />
+      <Association Name="OderRequest_PaymentRequest" Member="OderRequest" ThisKey="transId" OtherKey="transId" Type="OderRequest" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ConfirmOderRequest" Member="ConfirmOderRequests">
+    <Type Name="ConfirmOderRequest">
+      <Column Name="corId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="transId" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="statusCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="payUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="signature" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="OderRequest_ConfirmOderRequest" Member="OderRequest" ThisKey="transId" OtherKey="transId" Type="OderRequest" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Merchant" Member="Merchants">
+    <Type Name="Merchant">
+      <Column Name="shopId" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MerchantName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="amount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="accessKey" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="serectKey" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="resultUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="notifyUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Merchant_OderRequest" Member="OderRequests" ThisKey="shopId" OtherKey="shopId" Type="OderRequest" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OderRequest" Member="OderRequests">
+    <Type Name="OderRequest">
+      <Column Name="transId" Type="System.String" DbType="NChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="amount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="shopId" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="oderInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="responseTime" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="signature" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="OderRequest_PaymentRequest" Member="PaymentRequests" ThisKey="transId" OtherKey="transId" Type="PaymentRequest" />
+      <Association Name="OderRequest_ConfirmOderRequest" Member="ConfirmOderRequests" ThisKey="transId" OtherKey="transId" Type="ConfirmOderRequest" />
+      <Association Name="OderRequest_OrderPaymentReceipt" Member="OrderPaymentReceipts" ThisKey="transId" OtherKey="transId" Type="OrderPaymentReceipt" />
+      <Association Name="Merchant_OderRequest" Member="Merchant" ThisKey="shopId" OtherKey="shopId" Type="Merchant" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderPaymentReceipt" Member="OrderPaymentReceipts">
+    <Type Name="OrderPaymentReceipt">
+      <Column Name="oprId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="transId" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="amount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="statusCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="responseTime" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="signature" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="OderRequest_OrderPaymentReceipt" Member="OderRequest" ThisKey="transId" OtherKey="transId" Type="OderRequest" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

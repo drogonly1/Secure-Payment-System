@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SPP_APISERVER.Models.Merchant>
+
+@{
+    ViewBag.Title = "merchant";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>merchant</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MerchantName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accessKey)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serectKey)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.resultUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.notifyUrl)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MerchantName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accessKey)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.serectKey)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resultUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.notifyUrl)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.shopId.Trim() })
+        </td>
+    </tr>
+}
+
+</table>

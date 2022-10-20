@@ -1,0 +1,70 @@
+﻿<script language="javascript">
+    var m = 0;
+    var s = 10;
+    var timeout = null; // Timeout
+    window.onload = start;
+    function start() {
+        if (s === -1) {
+            m -= 1;
+            s = 59;
+        }
+
+        if (m === -1) {
+            console.log("OUT");
+            load_ajax();
+            return;
+        }
+
+        var text = "0" + m.toString() + ":" + s.toString();
+        $("#timeout").text(text);
+        timeout = setTimeout(function () {
+            s--;
+            start();
+        }, 1000);
+    }
+    function load_ajax() {
+        
+        $.ajax({
+            type: "POST",
+            url: "https://localhost:44327/api/Error?status=timeOut&transId=",
+            success: function (msg) {
+                console.log(msg)
+            }
+        });
+    }
+</script>
+<br />
+<p style="font-size:18px;" id="timeout"></p>
+<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">TransId:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" value="TransId" readonly />
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Price:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" value="Price" readonly />
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Shop Id:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" value="Shop Id" readonly />
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Oder Info:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" value="Oder Info" readonly />
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Oder Info:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" value="Oder Info" readonly />
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Username:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="User name..."  />
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Password:</label>
+        <input type="password" class="form-control" id="exampleInputEmail1" placeholder="Pass word..."  />
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

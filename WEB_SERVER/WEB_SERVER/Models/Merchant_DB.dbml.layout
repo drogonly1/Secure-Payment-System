@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Merchant_DB">
+  <DataContextMoniker Name="/Merchant_DBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="ecb46c14-0df0-4662-a587-a64173931df3" absoluteBounds="6.25, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/Merchant_DBDataContext/GetUrlPayment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e3fdcd4a-6433-4591-9ca1-4f536aa81759" absoluteBounds="6.265, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="69ebd62c-b0f9-4f06-8eb6-6b2662a479d7" absoluteBounds="0.75, 2.125, 2, 1.7708968098958335">
+      <DataClassMoniker Name="/Merchant_DBDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="86b488d3-e163-44af-8617-4647b693090b" absoluteBounds="0.765, 2.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="16539a30-a798-47bd-9581-477c5f3f2e14" absoluteBounds="3.5, 1.875, 2, 2.1554996744791661">
+      <DataClassMoniker Name="/Merchant_DBDataContext/OderRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="85d913b8-ada2-4448-b221-6e2a6dc097ed" absoluteBounds="3.515, 2.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="164fb508-4e86-4e0a-89e5-8f78fc2d8d17" absoluteBounds="6.25, 3.125, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/Merchant_DBDataContext/Payment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="79927e22-71f8-4a26-b6c5-6478450fa20c" absoluteBounds="6.265, 3.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 2.13064697265625); (6.25 : 2.13064697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Merchant_DBDataContext/OderRequest/OderRequest_GetUrlPayment" />
+      <nodes>
+        <classShapeMoniker Id="16539a30-a798-47bd-9581-477c5f3f2e14" />
+        <classShapeMoniker Id="ecb46c14-0df0-4662-a587-a64173931df3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.01044840494792); (3.5 : 3.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Merchant_DBDataContext/Product/Product_OderRequest" />
+      <nodes>
+        <classShapeMoniker Id="69ebd62c-b0f9-4f06-8eb6-6b2662a479d7" />
+        <classShapeMoniker Id="16539a30-a798-47bd-9581-477c5f3f2e14" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 3.57774983723958); (6.25 : 3.57774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/Merchant_DBDataContext/OderRequest/OderRequest_Payment" />
+      <nodes>
+        <classShapeMoniker Id="16539a30-a798-47bd-9581-477c5f3f2e14" />
+        <classShapeMoniker Id="164fb508-4e86-4e0a-89e5-8f78fc2d8d17" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

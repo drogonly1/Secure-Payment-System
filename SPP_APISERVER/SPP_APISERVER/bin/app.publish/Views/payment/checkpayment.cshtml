@@ -1,0 +1,71 @@
+﻿<script language="javascript">
+    var m = 9;
+    var s = 59;
+    var timeout = null; // Timeout
+    window.onload = start;
+    function start() {
+        if (s === -1) {
+            m -= 1;
+            s = 59;
+        }
+
+        if (m === -1) {
+            console.log("OUT");
+            load_ajax();
+            return;
+        }
+
+        var text = "0" + m.toString() + ":" + s.toString();
+        $("#timeout").text(text);
+        timeout = setTimeout(function () {
+            s--;
+            start();
+        }, 1000);
+    }
+    function load_ajax() {
+        const link = "https://localhost:44327/api/Error?transId="+@ViewBag.transId + "&amount=" + @ViewBag.amount;
+        $.ajax({
+            type: "POST",
+            url: link,
+            success: function (msg) {
+                document.location.href ="https://localhost:44327/Home/Error"
+            }
+        });
+    }
+</script>
+@{
+    ViewBag.Title = "Check Payment";
+}
+
+@ViewBag.ThongBao
+@using (Html.BeginForm("checkpayment", "payment"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <p style="font-size:18px;" id="timeout"></p>
+    <div class="form-group">
+        <label for="exampleInputEmail1">TransId:</label>
+        <input class="form-control" type="text" name="transId" id="transId" value="@ViewBag.transId" readonly>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Price:</label>
+        <input class="form-control" type="text" name="amount" id="amount" value="@ViewBag.amount" readonly>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Shop Id:</label>
+        <input class="form-control" type="text" name="shopId" id="shopId" value="@ViewBag.shopId" readonly>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Oder Info:</label>
+        <input class="form-control" type="text" name="orderInfo" id="orderInfo" value="@ViewBag.oderInfo" readonly>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Username:</label>
+        <input class="form-control" type="text" name="UserName" id="UserName" value="" placeholder="Enter your user name">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Password:</label>
+        <input class="form-control" type="password" name="password" id="password" value="" placeholder="Enter your password">
+    </div>
+    <button style="background-color: #FF7300; width: 326px; height: 39px; border-radius: 5px; border: none; margin-top: 70px; color:#FFF;" type="submit">Login</button>
+}
